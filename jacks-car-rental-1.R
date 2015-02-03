@@ -50,7 +50,7 @@ CalcBellman = function (loc1From, loc2From, currPolicy, maxCars, VV, R, transiti
     }
   }
   
-  newValue = 0   
+  newValue = -abs(constrainedPolicy) * transferCost  
   
   for (loc1To in 1:(maxCars+1)) {
     for (loc2To in 1:(maxCars+1)) {
@@ -60,7 +60,7 @@ CalcBellman = function (loc1From, loc2From, currPolicy, maxCars, VV, R, transiti
       
       transitionProb = transitionProbs[morning1, morning2, loc1To, loc2To]
       
-      expectedReward = reward * R[morning1, morning2, loc1To, loc2To] - abs(constrainedPolicy) * transferCost
+      expectedReward = reward * R[morning1, morning2, loc1To, loc2To] 
       
       newValue = newValue + transitionProb * (expectedReward + discount * VV[loc1To, loc2To]) 
     }
